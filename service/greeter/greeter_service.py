@@ -4,13 +4,16 @@ from service.greeter.models.greet import GreeterDB
 from service.greeter.schemas.greet import Greeter
 
 
-def save_greet(db: Session, greeter: Greeter):
-    db_greeter = GreeterDB(**greeter.model_dump())
-    db.add(db_greeter)
-    db.commit()
-    db.refresh(db_greeter)
-    return db_greeter
+class GreeterService:
+    def __init__(self, db: Session):
+        self.db = db
 
+    def save_greet(self, greeter: Greeter) -> GreeterDB:
+        db_greeter = GreeterDB(**greeter.model_dump())
+        self.db.add(db_greeter)
+        self.db.commit()
+        self.db.refresh(db_greeter)
+        return db_greeter
 
-def get_greeter_by_id(db: Session, greeter_id: int):
-    return db.query(GreeterDB).filter(GreeterDB.id == greeter_id).first()
+    def get_greeter_by_id(self, db: Session, greeter_id: int):
+        return db.query(GreeterDB).filter(GreeterDB.id == greeter_id).first()
