@@ -1,6 +1,6 @@
 .PHONY: all
 
-IMAGE_NAME ?= busybe-cloud
+IMAGE_NAME ?= py-service-skeleton
 
 test:
 	@echo "Running tests..."
