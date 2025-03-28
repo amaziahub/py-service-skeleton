@@ -10,7 +10,8 @@ class Client:
         self.endpoint = os.getenv("ENDPOINT", 'localhost')
         self.root = f'http://{self.endpoint}:{self.port}'
 
-    def is_healthy(self, headers=None):
-        response = requests.get(f"{self.root}/health", verify=False, headers=headers)
+    def is_healthy(self):
+        response = requests.get(f"{self.root}/health", verify=False)
         assert_that(response.status_code, is_(200))
+        return response
     

@@ -2,6 +2,8 @@ import os
 import subprocess
 from busypie import wait as busy_wait
 from tests.support.client import Client
+
+
 class AppDriver:
 
     def __init__(self):
@@ -27,5 +29,5 @@ class AppDriver:
         self._app_p.terminate()
         self._app_p.wait()
 
-    def is_healthy(self, headers=None):
-        return self.app_client.is_healthy(headers)
+    def is_healthy(self):
+        return self.app_client.is_healthy()
