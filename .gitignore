@@ -4,3 +4,5 @@ venv
 **/*.pyc
 .coverage
 coverage.json
+skeleton.db
+service/skeleton.db

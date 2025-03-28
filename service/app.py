@@ -8,6 +8,9 @@ from fastapi.responses import JSONResponse
 from starlette import status
 from starlette.middleware.cors import CORSMiddleware
 
+from service.db import models
+from service.db.db import engine
+from service.greeter import router as greeter_router
 from service.health import router as health_router
 
 logging.basicConfig(level=logging.INFO)
@@ -15,6 +18,7 @@ logger = logging.getLogger(__name__)
 
 load_dotenv()
 app = FastAPI(redirect_slashes=False)
+models.Base.metadata.create_all(bind=engine)
 
 origins = ["*"]
 
@@ -36,6 +40,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 
 
 app.include_router(health_router.router, prefix="/health")
+app.include_router(greeter_router.router, prefix="/greet")
 
 
 def main():
