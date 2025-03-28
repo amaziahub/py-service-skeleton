@@ -31,3 +31,6 @@ class AppDriver:
 
     def is_healthy(self):
         return self.app_client.is_healthy()
+
+    def greet(self, name, msg):
+        return self.app_client.greet(name, msg)

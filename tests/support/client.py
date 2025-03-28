@@ -14,4 +14,11 @@ class Client:
         response = requests.get(f"{self.root}/health", verify=False)
         assert_that(response.status_code, is_(200))
         return response
-    
+
+    def greet(self, name, msg):
+        response = requests.post(f"{self.root}/greet",
+                                 json={
+                                     "name": f"{name}",
+                                     "greet_msg": f"{msg}"
+                                 })
+        assert_that(response.status_code, is_(201))
