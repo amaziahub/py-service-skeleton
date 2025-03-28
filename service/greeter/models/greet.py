@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String
 
-from service.db.db import Base
+from service.db import Base
 
 
 class GreeterDB(Base):

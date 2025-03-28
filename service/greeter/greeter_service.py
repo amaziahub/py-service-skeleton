@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
-from service.db.models import GreeterDB
-from service.db.schemas import Greeter
+from service.greeter.models.greet import GreeterDB
+from service.greeter.schemas.greet import Greeter
 
 
 def save_greet(db: Session, greeter: Greeter):

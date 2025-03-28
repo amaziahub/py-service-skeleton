@@ -8,8 +8,7 @@ from fastapi.responses import JSONResponse
 from starlette import status
 from starlette.middleware.cors import CORSMiddleware
 
-from service.db import models
-from service.db.db import engine
+from service.db import Base, engine
 from service.greeter import router as greeter_router
 from service.health import router as health_router
 
@@ -18,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 load_dotenv()
 app = FastAPI(redirect_slashes=False)
-models.Base.metadata.create_all(bind=engine)
+Base.metadata.create_all(bind=engine)
 
 origins = ["*"]
 
