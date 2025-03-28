@@ -5,18 +5,10 @@ from sqlalchemy.orm import Session
 
 from service.db import greeter_persistence
 from service.db import schemas
-from service.db.db import SessionLocal
+from service.db.db import get_db
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
-
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 
 @router.post("", status_code=status.HTTP_201_CREATED)
