@@ -3,8 +3,8 @@ import logging
 from fastapi import APIRouter, Depends, HTTPException
 
 from service.dependencies import get_user_service
-from service.login.scemas.user import UserResponse, UserCreate
-from service.login.user_service import UserService
+from service.users.scemas.user import UserResponse, UserCreate
+from service.users.user_service import UserService
 
 logger = logging.getLogger(__name__)
 router = APIRouter()

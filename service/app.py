@@ -11,7 +11,7 @@ from starlette.middleware.cors import CORSMiddleware
 from service.db import Base, engine
 from service.greeter import router as greeter_router
 from service.health import router as health_router
-from service.login import router as users_router
+from service.users import router as users_router
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
