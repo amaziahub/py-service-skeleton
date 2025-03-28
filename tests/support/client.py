@@ -22,3 +22,12 @@ class Client:
                                      "greet_msg": f"{msg}"
                                  })
         assert_that(response.status_code, is_(201))
+
+    def login(self, username, password):
+        response = requests.post(f"{self.root}/login",
+                                 json={
+                                     "username": f"{username}",
+                                     "password": f"{password}"
+                                 })
+        assert_that(response.status_code, is_(200))
+        return response.json()

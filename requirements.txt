@@ -10,6 +10,9 @@ starlette~=0.27.0
 sqlalchemy
 pydantic-settings
 bcrypt
+pyjwt
+python-jose
+
 
 # tests
 pytest~=7.4.2

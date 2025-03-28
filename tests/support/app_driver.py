@@ -1,6 +1,6 @@
 import os
 import subprocess
-from busypie import wait as busy_wait
+from busypie import wait as busy_wait, SECOND
 from tests.support.client import Client
 
 
@@ -23,7 +23,7 @@ class AppDriver:
             ['python', app_file], env=(os.environ.copy())
         )
 
-        busy_wait().ignore_exceptions().until(self.is_healthy)
+        busy_wait().at_most(30, SECOND).ignore_exceptions().until(self.is_healthy)
 
     def stop(self):
         self._app_p.terminate()
@@ -34,3 +34,6 @@ class AppDriver:
 
     def greet(self, name, msg):
         return self.app_client.greet(name, msg)
+
+    def login(self, username, password):
+        return self.app_client.login(username, password)

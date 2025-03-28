@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 router = APIRouter()
 
 
-@router.post("/", response_model=UserResponse)
+@router.post("", response_model=UserResponse)
 def register_user(user: UserCreate,
                   service: UserService = Depends(get_user_service)):
     if service.get_user_by_username(user.username):

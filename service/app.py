@@ -11,7 +11,9 @@ from starlette.middleware.cors import CORSMiddleware
 from service.db import Base, engine
 from service.greeter import router as greeter_router
 from service.health import router as health_router
+from service.login import router as login_router
 from service.users import router as users_router
+from service.users.user_service import UserService
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -19,12 +21,11 @@ logger = logging.getLogger(__name__)
 load_dotenv()
 app = FastAPI(redirect_slashes=False)
 Base.metadata.create_all(bind=engine)
-
-origins = ["*"]
+UserService.insert_default_users()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -42,6 +43,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 app.include_router(health_router.router, prefix="/health")
 app.include_router(greeter_router.router, prefix="/greet")
 app.include_router(users_router.router, prefix="/users")
+app.include_router(login_router.router, prefix="/login")
 
 
 def main():
