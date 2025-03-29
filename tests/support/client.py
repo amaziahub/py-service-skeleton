@@ -18,6 +18,7 @@ class Client:
     def greet(self, name, msg):
         response = requests.post(f"{self.root}/greet",
                                  json={
+                                     "user_id": 1,
                                      "name": f"{name}",
                                      "greet_msg": f"{msg}"
                                  })
