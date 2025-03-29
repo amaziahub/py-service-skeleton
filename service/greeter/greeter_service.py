@@ -15,5 +15,5 @@ class GreeterService:
         self.db.refresh(db_greeter)
         return db_greeter
 
-    def get_greeter_by_id(self, greeter_id: int):
-        return self.db.query(GreeterDB).filter(GreeterDB.id == greeter_id).first()
+    def get_greets_by_id(self, user_id: int):
+        return self.db.query(GreeterDB).filter(GreeterDB.user_id == user_id)
